@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 logger.addHandler(file_handler)
 
 
-class Message_System:
+class MessageSystem:
     def __init__(self, host_ip=None, broadcast_addr=None):
         self.host_ip = host_ip
         self.broadcast_addr = broadcast_addr
@@ -175,7 +175,7 @@ class Message_System:
 
         for i in self.pendig_send:
             if i["ip"] is None:
-                for nic_ip in Message_System.get_ips():
+                for nic_ip in MessageSystem.get_ips():
                     self._mc_send(
                         nic_ip, self.broadcast_addr, 50001, i["message"].encode()
                     )
@@ -198,7 +198,7 @@ class Message_System:
             if i["times"] > 0:
                 i["times"] -= 1
             logger.info(f"listening in {self.host_ip}")
-            for nic_ip in Message_System.get_ips():
+            for nic_ip in MessageSystem.get_ips():
                 if "broadcast" in nic_ip:
                     msg, ip = self._mc_recv(nic_ip, nic_ip["broadcast"], 50001)
 
