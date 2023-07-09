@@ -95,7 +95,7 @@ class MessageSystem:
         threading.Timer(duration, self.close_sock, [sock]).start()
 
     def close_sock(self, sock: socket.socket):
-        if Message_System.is_socket_open(sock):
+        if MessageSystem.is_socket_open(sock):
             logger.debug(f"closing socket, {str(sock)}")
             try:
                 if sys.platform.startswith("linux"):

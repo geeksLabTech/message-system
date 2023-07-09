@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "message-system"
-version = "0.1.1"
+version = "0.1.2"
 description = ""
 authors = ["JavierOramas <javiale2000@gmail.com>", "Lia001218 <liazerqueraf@gmail.com>", "DanielUH2019 <danielcardenascabrera2016@gmail.com>"]
 readme = "README.md"
