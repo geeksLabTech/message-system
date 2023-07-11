@@ -45,6 +45,22 @@ message = msg_system.receive()
 print(message)  # Output: "Hello, world!"
 
 ```
+### Heartbeat Sender code
+Run this code in the PC sending the heartbeat, it will repeatedly send the data pending to be sent.
+The function call can be wrapped in a Thread so that the program execution does not get stuck in the send_heartbeat function.
+
+```python
+from message_system.message_system import MessageSystem
+
+# Create an instance of the message system
+msg_system = MessageSystem()
+
+# Add a message to the send list
+msg_system.add_to_send("Hello, world!")
+
+# Send all pending messages
+msg_system.send_heartbeat()
+```
 
 ## Additional Features
 The MessageSystem package provides several additional features, including:
