@@ -88,7 +88,10 @@ class MessageSystem:
         # The IP_MULTICAST_TTL's default value is 1 unless we set it otherwise.
         sender.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 1)
         sender.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+        sender.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
+        # Set the IP_MULTICAST_LOOP option to False to ignore local messages
+        sender.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_LOOP, 0)
         # This defines to which network interface (NIC) is responsible for
         # transmitting the multicast datagram; otherwise, the socket
         # uses the default interface (ifindex = 1 if loopback is 0)
@@ -173,6 +176,10 @@ class MessageSystem:
             fileno=None,
         )
         receiver.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+        receiver.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+        # Set the IP_MULTICAST_LOOP option to False to ignore local messages
+        receiver.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_LOOP, 0)
 
         # This configure the socket to receive datagrams sent to this multicast
         # end point, i.e., the pair of
